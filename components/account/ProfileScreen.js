@@ -33,8 +33,10 @@ export const ProfileScreen = () => {
         e.preventDefault()
 
         if( name.trim() === "" || lastName.trim() === "" || email.trim() === "") {
+            
             toast.warning("Los campos son obligatorios")
             return false;
+
         }else{
             
             dispatch(startEditProfile(profileChange))
