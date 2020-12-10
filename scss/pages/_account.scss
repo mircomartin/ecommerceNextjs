@@ -1,0 +1,47 @@
+.account {
+    &__configuration {
+        position: relative;
+        padding: 10px;
+
+        .title {
+            width: max-content;
+            background-color: $background-dark-absolute;
+            color: $font-light;
+            padding: 5px 10px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .data {
+            background-color: $background-light;
+            box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, .1);
+
+        }
+    }
+}
+
+.profileForm {
+    padding: 20px 15px;
+
+    > h4 {
+        color: $primary;
+        font-size: 22px;
+    }
+
+    > form {
+        text-align: center;
+
+        .submit {
+            padding: 12px 60px;
+        }
+    }
+
+    .fields {
+        display: block!important;
+        text-align: center;
+    }
+
+    &__inputText {
+        width: 70%!important;
+        margin-bottom: 20px!important;
+    }
+}

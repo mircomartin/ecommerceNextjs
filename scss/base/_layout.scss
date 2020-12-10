@@ -1,0 +1,117 @@
+.basic-layout {
+    min-height: 100vh!important;
+    background-image: url("https://res.cloudinary.com/dpcxwhyj9/image/upload/v1606689475/static/bg-web_kchcno.jpg");
+    background-size: cover;
+    background-position: center;
+    .content {
+        background-color: $background-grey-light;
+        height: calc(100vh - 153px);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .75);
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}
+
+.header {
+    position: relative;
+    box-shadow: 0 -10px 10px 15px rgba(0, 0, 0, .5);
+    z-index: 1;
+    background-color: $background-dark;
+}
+
+.topbar {
+    height: 90px;
+    background-color: $background-dark;
+    .ui.grid {
+        margin: 0;
+        padding: 0;
+        .column {
+            padding: 0;
+        }
+    }
+    &__left {
+        img {
+            height: 50px;
+            transition: all .5s;
+            &:hover {
+                transform: translateX(-15px);
+            }
+        }
+    }
+    &__right {
+        display: flex!important;
+        justify-content: flex-end;
+        align-items: center;
+        .ui.input {
+            margin-right: 40px;
+            align-items: center;
+            input {
+                background-color: transparent!important;
+                border: 0;
+                border-bottom: 2px solid $primary!important;
+                border-radius: 0;
+                color: $primary!important;
+                padding: 5px 0;
+                padding-right: 5px!important;
+                width: 220px;
+                font-size: 20px;
+                transition: width 0.7s;
+                &:focus {
+                    width: 350px;
+                }
+            }
+        }
+        i {
+            color: $primary;
+            opacity: 1!important;
+            font-size: 25px;
+            right: -50px!important;
+        }
+    }
+}
+
+.menuweb {
+    background-color: $background-grey-dark;
+    border-radius: 0;
+    .ui.grid {
+        margin: 0;
+    }
+    &__left,
+    &__right {
+        padding: 0!important;
+        display: flex!important;
+        align-items: center;
+
+        .ui.menu {
+            border: 0;
+            box-shadow: none;
+            height: 100%;
+            background: transparent;
+            .icon {
+                margin-right: 10px!important;
+                color: $primary;
+            }
+            .item {
+                color: $font-light;
+                border-radius: 0;
+                &:hover {
+                    color: $font-light;
+                    background-color: $background-dark-absolute;
+                    &:before {
+                        background-color: $background-dark-absolute;
+                    }
+                }
+                .sinMargin {
+                    margin-right: 0!important;
+                }
+            }
+        }
+    }
+    &__right {
+        display: flex!important;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}
