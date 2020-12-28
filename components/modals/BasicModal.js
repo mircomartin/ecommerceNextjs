@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Modal, Icon } from 'semantic-ui-react'
 
 //Actions
-import { uiCloseModal } from './../../store/actions/authAction'
+import { uiCloseModal, uiCloseModalAddress } from './../../store/actions/authAction'
 
 export const BasicModal = ({title, children}) => {
 

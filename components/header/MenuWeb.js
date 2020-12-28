@@ -6,20 +6,24 @@ import { useDispatch, useSelector } from 'react-redux'
 //Semantic y Next
 import { Container, Menu, Grid, Icon } from 'semantic-ui-react'
 import Link from 'next/link'
+import { useRouter } from 'next/dist/client/router'
 
 //Components
 import { BasicModal } from '../modals/BasicModal'
 import { Auth } from '../auth/Auth'
+import { toast } from 'react-toastify'
+import { BASE_PATH } from '../../utils/constants'
 
 //Actions
 import { startChecking, startLogout, uiOpenModal } from '../../store/actions/authAction'
-import { useRouter } from 'next/dist/client/router'
 
 export const MenuWeb = () => {
 
+    const [platforms, setPlatforms] = useState([])
     const [titleModal, setTitleModal] = useState("Iniciar Sesion")
 
     const { logged, checking, user } = useSelector(state => state.auth)
+
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -32,14 +36,36 @@ export const MenuWeb = () => {
         router.replace("/")
     }
 
+    const getPlatformApi = async () => {
+
+        try {
+
+            const url = `${BASE_PATH}/platforms?_sort=position:asc`;
+            
+            const response = await fetch(url);
+            const result = await response.json()
+
+            setPlatforms(result)
+
+        } catch (error) {
+            toast.error("Hubo un error, al cargar las plataformas")
+        }
+    }
+
     useEffect(() => {
 
         dispatch(startChecking())
         
-    }, [dispatch])
+    }, [])
+
+    useEffect(() => {
+
+        getPlatformApi()
+
+    }, [])
 
     if(checking) {
-		return (<h5>Espere...</h5>)
+		return null
     }
     
     return (
@@ -48,21 +74,15 @@ export const MenuWeb = () => {
                 <Grid className="menuweb">
                     <Grid.Column mobile={16} tablet={8} computer={6} className="menuweb__left">
                         <Menu>
-                            <Link href="/platform/ps">
-                                <Menu.Item as="a">
-                                    Play Station
-                                </Menu.Item>
-                            </Link>
-                            <Link href="/platform/xbox">
-                                <Menu.Item as="a">
-                                    Xbox
-                                </Menu.Item>
-                            </Link>
-                            <Link href="/platform/switch">
-                                <Menu.Item as="a">
-                                    Switch
-                                </Menu.Item>
-                            </Link>
+                            {
+                                platforms.map( (platform) => (
+                                    <Link href={`/games/${platform.url}`} key={platform.id}>
+                                        <Menu.Item as="a">
+                                            {platform.title}
+                                        </Menu.Item>
+                                    </Link>
+                                ))
+                            }
                         </Menu>
                     </Grid.Column>
 

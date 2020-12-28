@@ -9,6 +9,8 @@ import * as Yup from 'yup';
 
 //Semantic
 import { Form, Button } from 'semantic-ui-react';
+
+//Actions
 import { startRegisterUser } from '../../store/actions/authAction';
 
 export const RegisterScreen = ({ showLoginScreen }) => {

@@ -1,5 +1,6 @@
 .account {
-    &__configuration {
+    &__configuration,
+    &__addresses {
         position: relative;
         padding: 10px;
 
@@ -17,22 +18,57 @@
 
         }
     }
+    
+    &__addresses {
+        .title {
+            i {
+                position: absolute;
+                right: 10px;
+                color: $font-dark;
+            }
+        }
+    }
 }
 
 .profileForm {
-    padding: 20px 15px;
+    padding: 30px;
 
     > h4 {
-        color: $primary;
-        font-size: 22px;
+        color: #212121;
+        font-size: 18px;
+        line-height: 25.2px;
+        margin-bottom: 20px;
+        text-align: center;
+        letter-spacing: 0.36px;
+        font-weight: 700;
+    }
+
+    > p {
+        color: #4d4d4d;
+        font-size: 18px;
+        line-height: 25.2px;
+        font-weight: 300;
+        text-align: left;        
+        margin-bottom: 30px;
     }
 
     > form {
         text-align: center;
+        width: 100%!important;
 
         .submit {
             padding: 12px 60px;
         }
+
+        label {
+            width: 60%;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
     }
 
     .fields {
@@ -41,7 +77,52 @@
     }
 
     &__inputText {
-        width: 70%!important;
+        color: $font-dark;
+        width: 50%!important;
         margin-bottom: 20px!important;
+        padding: 20px 16px 0;
+        border: none!important;
+        border-bottom: 1px solid $border-grey!important;
+        background-color: #E0DEDC!important;
+        opacity: .5!important;
+        transition: .5s ease all!important;
+        &:hover {
+            opacity: 1!important;
+        }
+        &:focus {
+            opacity: 1!important;
+            border-bottom: 3px solid $border-grey!important;
+        }
+    }
+}
+
+.list-address {
+    padding: 10px;
+
+    .address {
+        padding: 10px;
+        margin: 10px 0 10px 0;
+        border: 1px solid $border-grey-light;
+        border-radius: 5px;
+
+        p {
+            margin-bottom: 5px;
+            &:first-of-type {
+                padding-bottom: 10px;
+                font-weight: bold;
+                border-bottom: 1px solid $border-grey-light;
+                margin-bottom: 10px;
+                font-size: 16px;
+            }
+        }
+
+        .actions {
+            margin-top: 20px;
+
+            .ui.button.primary {
+                background-color: $primary;
+                color: $font-light;
+            }
+        }
     }
 }

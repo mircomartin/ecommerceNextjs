@@ -21,6 +21,15 @@ export const uiCloseModal = () => ({
     type: types.closeModal
 })
 
+//Modal Directions
+export const uiOpenModalAddress = () => ({
+    type: types.openModalAddress
+})
+
+export const uiCloseModalAddress = () => ({
+    type: types.closeModalAddress
+})
+
 //Registrar Usuario
 export const startRegisterUser = (usuario) => {
     return async (dispatch) => {
@@ -89,7 +98,10 @@ export const startLogin = (usuario) => {
             
             const userLogin = {
                 userName: results.user.username,
+                email: results.user.email,
                 uid: results.user.id,
+                name: results.user.name,
+                lastName: results.user.lastname
             }
 
             dispatch({
@@ -125,13 +137,13 @@ export const startChecking = () => {
             try {
                 const url = `${BASE_PATH}/users/me`
                 const result = await authFetch(url, null)
-    
+
                 const userLogin = {
                     userName: result.username,
                     email: result.email,
                     uid: result.id,
                     name: result.name,
-                    lastName: result.lastname
+                    lastName: result.lastname,
                 }
     
                 dispatch({
@@ -182,7 +194,7 @@ export const startLogout = () => {
     }
 }
 
-//Actualizar nombre y apellido
+//Actualizar datos de perfil
 export const startEditProfile = (user) => {
     return async (dispatch) => {
 
@@ -207,14 +219,17 @@ export const startEditProfile = (user) => {
                 }
 
                 const result = await authFetch(url, params)
-                toast.success("Se actualizo correctamente")
+
+                if(result.statusCode === 400 ) {
+                    toast.error("Hubo un error, al actualizar los datos")
+                }else{
+                    toast.success("Se actualizo correctamente")
+                }
 
                 dispatch(finishedLoading())
-
                 dispatch(startChecking())
 
             } catch (error) {
-                
                 toast.error("Hubo un error, al actualizar los datos")
                 dispatch(finishedLoading())
 
